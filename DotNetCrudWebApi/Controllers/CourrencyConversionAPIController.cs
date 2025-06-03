@@ -1,16 +1,12 @@
 ﻿using Asp.Versioning;
 using ConversionAPI.Application.Interfaces;
 using ConversionAPI.Domain.Entities;
-using DotNetCrudWebApi.Data;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
 
-namespace DotNetCrudWebApi.Controllers
+namespace CourrencyConversionAPI.Controllers
 {
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/CourrencyConversionAPI")]

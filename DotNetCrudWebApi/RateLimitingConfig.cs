@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.RateLimiting;
 using System.Threading.RateLimiting;
 
-namespace DotNetCrudWebApi
+namespace CourrencyConversionAPI
 {
     public static class RateLimitingConfig
     {

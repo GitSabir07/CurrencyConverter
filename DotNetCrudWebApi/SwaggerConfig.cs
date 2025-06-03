@@ -1,6 +1,6 @@
 ﻿using Microsoft.OpenApi.Models;
 
-namespace DotNetCrudWebApi
+namespace CourrencyConversionAPI
 {
     public static class SwaggerConfig
     {

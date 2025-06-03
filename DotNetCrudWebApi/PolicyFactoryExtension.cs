@@ -1,7 +1,7 @@
 ﻿using Polly.Extensions.Http;
 using Polly;
 
-namespace DotNetCrudWebApi
+namespace CourrencyConversionAPI
 {
     public static class PolicyFactoryExtension
     {

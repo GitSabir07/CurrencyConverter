@@ -1,11 +1,5 @@
-﻿using ConversionAPI.Application.Interfaces;
-using ConversionAPI.Domain.Interfaces;
+﻿using ConversionAPI.Domain.Interfaces;
 using ConversionAPI.Infrastructure.ExternalAPIs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConversionAPI.Infrastructure
 {

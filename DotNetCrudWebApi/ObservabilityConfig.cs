@@ -2,7 +2,7 @@
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
-namespace DotNetCrudWebApi
+namespace CourrencyConversionAPI
 {
     public static class ObservabilityConfig
     {

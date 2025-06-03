@@ -1,4 +1,4 @@
-﻿namespace DotNetCrudWebApi.Middlewares
+﻿namespace CourrencyConversionAPI.Middlewares
 {
     public class ExceptionHandlingMiddleware
     {

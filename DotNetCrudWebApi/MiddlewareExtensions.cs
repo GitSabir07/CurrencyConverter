@@ -1,6 +1,6 @@
-﻿using DotNetCrudWebApi.Middlewares;
+﻿using CourrencyConversionAPI.Middlewares;
 
-namespace DotNetCrudWebApi
+namespace CourrencyConversionAPI
 {
     public static class MiddlewareExtensions
     {

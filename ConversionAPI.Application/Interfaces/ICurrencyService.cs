@@ -1,10 +1,4 @@
-﻿using ConversionAPI.Application.Dtos;
-using ConversionAPI.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ConversionAPI.Domain.Entities;
 
 namespace ConversionAPI.Application.Interfaces
 {

@@ -2,7 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace DotNetCrudWebApi
+namespace CourrencyConversionAPI
 {
     public static class ConfigureAuth
     {

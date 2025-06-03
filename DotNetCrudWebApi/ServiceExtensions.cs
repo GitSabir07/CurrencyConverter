@@ -3,9 +3,9 @@ using ConversionAPI.Application.Services;
 using ConversionAPI.Domain.Interfaces;
 using ConversionAPI.Infrastructure.ExternalAPIs;
 using ConversionAPI.Infrastructure;
-using DotNetCrudWebApi.Data;
+using CourrencyConversionAPI.Data;
 
-namespace DotNetCrudWebApi
+namespace CourrencyConversionAPI
 {
     public static class ServiceExtensions
     {

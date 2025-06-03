@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace DotNetCrudWebApi.Data;
+namespace CourrencyConversionAPI.Data;
 
 public abstract class AppEntity<TKey>
     where TKey : IEquatable<TKey>

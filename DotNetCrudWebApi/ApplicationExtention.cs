@@ -1,7 +1,7 @@
 ﻿using Serilog;
 using Serilog.Formatting.Compact;
 
-namespace DotNetCrudWebApi
+namespace CourrencyConversionAPI
 {
     public static class ApplicationExtention
     {

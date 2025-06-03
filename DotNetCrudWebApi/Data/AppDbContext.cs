@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace DotNetCrudWebApi.Data
+namespace CourrencyConversionAPI.Data
 {
     public class AppDbContext : DbContext
     {

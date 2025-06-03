@@ -1,6 +1,6 @@
 ﻿using ConversionAPI.Application.Interfaces;
 using ConversionAPI.Domain.Entities;
-using DotNetCrudWebApi.Controllers;
+using CourrencyConversionAPI.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 

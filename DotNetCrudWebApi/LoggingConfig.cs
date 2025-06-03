@@ -2,7 +2,7 @@
 using Serilog.Formatting.Compact;
 using Serilog;
 
-namespace DotNetCrudWebApi
+namespace CourrencyConversionAPI
 {
     public static class LoggingConfig
     {

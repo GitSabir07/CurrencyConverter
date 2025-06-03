@@ -1,6 +1,6 @@
 ﻿using Asp.Versioning;
 
-namespace DotNetCrudWebApi
+namespace CourrencyConversionAPI
 {
     public static class ApiVersioningConfig
     {
