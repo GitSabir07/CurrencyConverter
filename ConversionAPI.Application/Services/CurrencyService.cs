@@ -7,15 +7,12 @@ namespace ConversionAPI.Application.Services
     public class CurrencyService : ICurrencyService
     {
         private readonly ICurrencyProvider _currencyProvider;
-        private readonly ICurrencyProviderFactory _clientFactory;
 
-        // public CurrencyService(ICurrencyProvider currencyProvider, ICurrencyProviderFactory clientFactory)
         public CurrencyService(ICurrencyProviderFactory clientFactory)
         {
-            // _currencyProvider = currencyProvider;
             _currencyProvider = clientFactory.GetProvider("Frankfurter");
         }
-        public async Task<ExchangeRate> ConvertAsync(string from, string to, decimal amount)
+        public async Task<ExchangeRate?> ConvertAsync(string from, string to, decimal amount)
         {
             
             return await _currencyProvider.ConvertAsync(from, to, amount);
@@ -26,7 +23,7 @@ namespace ConversionAPI.Application.Services
             return await _currencyProvider.GetHistoricalRatesAsync(baseCurrency, fromDate, toDate, page, pageSize);
         }
 
-        public async Task<ExchangeRate> GetLatestRatesAsync(string baseCurrency)
+        public async Task<ExchangeRate?> GetLatestRatesAsync(string baseCurrency)
         {
             return await _currencyProvider.GetLatestRatesAsync(baseCurrency);
         }

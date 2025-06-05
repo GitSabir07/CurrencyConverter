@@ -18,7 +18,7 @@ namespace ConversionAPI.Infrastructure.ExternalAPIs
         {
             _httpClient = httpClient;
         }
-        public async Task<ExchangeRate> ConvertAsync(string fromCurrency, string toCurrency, decimal amount)
+        public async Task<ExchangeRate?> ConvertAsync(string fromCurrency, string toCurrency, decimal amount)
         {
             var url = $"https://api.frankfurter.dev/v1/latest?base={fromCurrency}&symbols={toCurrency}";
 
@@ -29,7 +29,7 @@ namespace ConversionAPI.Infrastructure.ExternalAPIs
                 decimal convertedAmount = amount * response.Rates[toCurrency];
                 Console.WriteLine($"{amount} {fromCurrency} = {convertedAmount:F2} {toCurrency}");
             }
-            return response ?? new ExchangeRate();
+            return response;
         }
 
         public async Task<Dictionary<string,Dictionary<string,decimal>>> GetHistoricalRatesAsync(string baseCurrency, string fromDate, string toDate, int page, int pageSize)
@@ -39,8 +39,7 @@ namespace ConversionAPI.Infrastructure.ExternalAPIs
             var response = await _httpClient.GetFromJsonAsync<HistoricalRatesDto>(url);
             if (response == null || response.Rates.Count == 0)
             {
-                return new Dictionary<string, Dictionary<string, decimal>>(); // Return empty dictionary if no rates found
-                //return NotFound($"No historical rates found for {baseCurrency} between {fromDate} and {toDate}.");
+                return [];
             }
 
             // Apply Pagination
@@ -50,7 +49,7 @@ namespace ConversionAPI.Infrastructure.ExternalAPIs
             return pagedRates;
         }
 
-        public async Task<ExchangeRate> GetLatestRatesAsync(string baseCurrency)
+        public async Task<ExchangeRate?> GetLatestRatesAsync(string baseCurrency)
         {           
             var url = $"https://api.frankfurter.dev/v1/latest?base={baseCurrency}";
 
@@ -63,7 +62,7 @@ namespace ConversionAPI.Infrastructure.ExternalAPIs
                     Console.WriteLine($"{rate.Key}: {rate.Value}");
                 }
             }
-            return response ?? new ExchangeRate();
+            return response;
         }
     }
 }

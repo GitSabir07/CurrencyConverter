@@ -42,11 +42,20 @@ namespace CourrencyConversionAPI.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<ExchangeRate>> GetLatestRatesByBaseAsync(string baseCurrency)
         {
+            if (string.IsNullOrEmpty(baseCurrency))
+            {
+                return BadRequest("Base currency is required.");
+            }
             if (IsUnsupportedCurrency(baseCurrency))
                 return BadRequest($"Currency '{baseCurrency}' is not supported.");
 
          
             var response = await _currencyService.GetLatestRatesAsync(baseCurrency);
+
+            if (response == null)
+            {
+                return NoContent();
+            }
 
             return Ok(response);
         }
@@ -65,6 +74,11 @@ namespace CourrencyConversionAPI.Controllers
             string fromDate = string.Empty;
             string toDate = string.Empty;
 
+            if (string.IsNullOrEmpty(baseCurrency))
+            {
+                return BadRequest("Base currency is required.");
+            }
+
             if (startDate == DateTime.MinValue)
             {
                 return BadRequest();
@@ -79,6 +93,11 @@ namespace CourrencyConversionAPI.Controllers
             
             var response = await _currencyService.GetHistoricalRatesAsync(baseCurrency, fromDate, toDate, page, pageSize);
 
+            if(!response.Any())
+            {
+                return NoContent();
+            }
+
             return Ok(response);
         }
 
@@ -87,17 +106,37 @@ namespace CourrencyConversionAPI.Controllers
         [MapToApiVersion("1.0")]
         [Authorize(Roles = "Admin")]
         [AllowAnonymous]
-        public async Task<ActionResult<ExchangeRate>> ConvertCurrencyAsync(string fromCurrency, string toCurrency, decimal amount)
+        public async Task<ActionResult<ExchangeRate>> ConvertCurrencyAsync(string fromCurrency, string toCurrency, decimal? amount)
         {
+            if (string.IsNullOrEmpty(fromCurrency))
+            {
+                return BadRequest("from Currency is required.");
+            }
+
+            if (string.IsNullOrEmpty(toCurrency))
+            {
+                return BadRequest("to Currency is required.");
+            }
+              if (!amount.HasValue)
+            {
+                return BadRequest("amount is required.");
+            }
+
             if (IsUnsupportedCurrency(fromCurrency))
                 return BadRequest($"Currency '{fromCurrency}' is not supported.");
 
             if (IsUnsupportedCurrency(toCurrency))
                 return BadRequest($"Currency '{toCurrency}' is not supported.");
 
+            var amt = amount.Value;
+            var response = await _currencyService.ConvertAsync(fromCurrency, toCurrency, amt);
+            decimal convertedAmount = amt * response.Rates[toCurrency];
 
-           var response = await _currencyService.ConvertAsync(fromCurrency, toCurrency, amount);
-            decimal convertedAmount = amount * response.Rates[toCurrency];
+            if (response == null)
+            {
+                return NoContent();
+            }
+
             return Ok($"{amount} {fromCurrency} = {convertedAmount:F2} {toCurrency}");
 
         }
@@ -110,18 +149,6 @@ namespace CourrencyConversionAPI.Controllers
 
     }
 
-    //public class ExchangeRates
-    //{
-    //    public string Base { get; set; }
-    //    public string Date { get; set; }
-    //    public Dictionary<string, decimal> Rates { get; set; }
-    //}
-
-    //public class HistoricalRates
-    //{
-    //    public string Base { get; set; }
-    //    public Dictionary<string, Dictionary<string, decimal>> Rates { get; set; }
-    //    public string Date { get; set; }
-    //}
+   
 
 }
